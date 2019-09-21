@@ -1,0 +1,10 @@
+trie.insert('holloaing');
+trie.insert('broquineer');
+trie.insert('semineutrality');
+trie.insert('electrizing');
+trie.insert('torotoro');
+trie.insert('cachexia');
+trie.insert('nonenumerated');
+trie.insert('dubio');
+trie.insert('improbative');
+trie.insert('subprioress');
