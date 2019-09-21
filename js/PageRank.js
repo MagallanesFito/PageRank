@@ -3,6 +3,9 @@ class PageRank{
 		this.damping = damping;
 		this.epsilon = epsilon;
 		//save an instance of Matrix operation handler
+		/*ADD THIS.LINKS = LINKS
+		LINKS ATTRIBUTE IS PART OF THIS ALGORITHM
+		*/
 		this.matopHandler = new VectorAlgebra(links);
 	}
 	run(M){
@@ -24,6 +27,9 @@ class PageRank{
 		return v;
 	}
 	//only for testing
+	/*
+	IF THE NUMBER OF LINKS GROWS, REPLACE THIS REPRESENTATION FOR ADJENCY LIST
+	*/
 	createExampleMatrix(){
 		var matrix  = this.matopHandler.createMatrix(1);
 		matrix[0] = [0, 0, 0, 0, 1];
