@@ -33,5 +33,51 @@ class PageRank{
 		matrix[4] = [0, 0, 0.5, 1, 0];
 		return matrix;
 	}
+	/*
+	A link cannot mention itself and make sure to pick different links
+	*/
+	generateRandomIndex(matrix,j){
+		var N = matrix[0].length;
+		var ithLink = Math.floor(Math.random() * N);
+		
+		while(matrix[ithLink][j] != 0 && ithLink==j){
+			ithLink = Math.floor(Math.random() * N);	
+		}
+		return ithLink;
+	}
+	/*
+	Creates a Random matrix of links. Given that the sum of each column must be equal to 1. 
+	*/
+	shuffleArray(array) {
+	    for (var i = array.length - 1; i > 0; i--) {
+	        var j = Math.floor(Math.random() * (i + 1));
+	        var temp = array[i];
+	        array[i] = array[j];
+	        array[j] = temp;
+	    }
+	    return array;
+	}
+	createRandomLinks(){
+		var matrix  = this.matopHandler.createMatrix(0);
+		var N = this.matopHandler.getLinks();
+		var indices = [];
+		for(var i=0;i<N;i++){
+			indices.push(i);
+		}
+		for(var j=0;j<N;j++){
+			var numMentions = Math.floor(Math.random() * (N-1))+1;
+			var tmpIndices = indices.slice();
+			tmpIndices.splice(j,1);
+			tmpIndices = this.shuffleArray(tmpIndices);
+			var prob = 1/numMentions;
+			//console.log("tmpIndices: "+tmpIndices.length.toString());
+			for(var i=0;i<numMentions;i++){
+				var ithLink = tmpIndices[i]; 
+				//console.log(tmpIndices.length);
+				matrix[ithLink][j] = prob;
+			}
+		}
+		return matrix;
+	}
 
 }

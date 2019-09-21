@@ -12,6 +12,9 @@ class VectorAlgebra{
 		cols: number of cols
 		initValue: if this value = -999 all values will be set to random
 	*/
+	getLinks(){
+		return this.links;
+	}
 	createMatrix(initValue){
 		var matrix = [];
 		for(var i=0; i<this.links; i++) {
@@ -30,7 +33,6 @@ class VectorAlgebra{
 	createVector(initValue){
 		var vector= [];
 		for(var i=0;i<this.links;i++){
-			//var c = ((a < b) ? 'minor' : 'major');
 			vector[i] = ((initValue ==null) ? Math.random() : initValue);
 		}
 		return vector;
@@ -39,22 +41,12 @@ class VectorAlgebra{
 	Calculate p-norm of the vector v 
 	*/
 	norm(v,p){
-		//console.log("hola mundo");
 		var sum = 0;
-		if(p==1){
-			for(var i=0;i<v.length;i++){
-				//console.log(v[i]);
-				sum = sum + Math.abs(v[i]);
-			}
+		for(var i=0;i<v.length;i++){
+			var abs = Math.abs(v[i]);
+			sum = sum + Math.pow(abs,p);
 		}
-		else{
-			for(var i=0;i<v.length;i++){
-				//console.log(v[i]);
-				var abs = Math.abs(v[i]);
-				sum = sum + Math.pow(abs,p);
-			}
-			sum = Math.pow(sum,1/p);
-		}
+		sum = Math.pow(sum,1/p);
 		return sum;
 	}
 	/*
