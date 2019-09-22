@@ -6,7 +6,12 @@ class PageRank{
 		/*ADD THIS.LINKS = LINKS
 		LINKS ATTRIBUTE IS PART OF THIS ALGORITHM
 		*/
-		this.matopHandler = new VectorAlgebra(links);
+		this.links = links;
+		this.matopHandler = null;
+		if(links != null){
+			//this.links = links;
+			this.matopHandler = new VectorAlgebra(this.links);
+		}
 	}
 	run(M){
 		//The algorithm runs here
@@ -39,7 +44,10 @@ class PageRank{
 		matrix[4] = [0, 0, 0.5, 1, 0];
 		return matrix;
 	}
-	
+	setLinks(links){
+		this.links = links;
+		this.matopHandler = new VectorAlgebra(this.links);
+	}
 	createRandomLinks(){
 		var matrix  = this.matopHandler.createMatrix(0);
 		var N = this.matopHandler.getLinks();

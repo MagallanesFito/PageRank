@@ -7,10 +7,10 @@ const EPSILON=0.0001;
 function insertData(){
 var trie = new Trie();
 	trie.insert('expirer');
+	trie.insert('explorador');
+	trie.insert('experimento');
+	trie.insert('excremento');
 	trie.insert('commemorating');
-	trie.insert('psychoses');
-	trie.insert('staggering');
-	trie.insert('redig');
 return trie;
 }
 /*THIS FILE WAS GENERATED AUTOMATICALLY using generate.py
