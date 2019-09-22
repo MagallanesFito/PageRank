@@ -29,7 +29,8 @@ function verifyInput(){
 function buildDict(result,prob){
 	var dict = {};
 	for(var i =0;i<result.length;i++){
-		dict[result[i]] = prob[i];
+		var newkey  = result[i]["name"] + "+"+ result[i]["url"]; 
+		dict[newkey] = prob[i];
 	}
 	return dict;
 }
@@ -42,19 +43,32 @@ function sortResultsByRank(dict){
 	});
 	return items;
 }
+function showInDOM(results,limit){
+	//Add
+	var n = ((results.length>limit) ? limit : results.length);
+	for(var i=0;i<n;i++){
+		var website = results[i][0].split("+");
+		const div = document.createElement("div");
+
+		var capKey = website[0];
+		capKey = capKey.charAt(0).toUpperCase() + capKey.slice(1);
+			
+		div.innerHTML = "<h3>"+capKey+"</h3><a href='#'>"+website[1]+"</a><br><br>";
+		document.getElementById("result_content").appendChild(div);
+	}
+}
 function search(){
 	var search_text = document.getElementById("input_search").value;
 	var search_result = trie.find(search_text);
-	console.log("resultados trie");
-	console.log(search_result);
+	//console.log(search_result);
 	pagerank.setLinks(search_result.length);
 	var M = pagerank.createRandomLinks();
 	var v = pagerank.run(M);
 	var dict = buildDict(search_result,v);
+	console.log(dict);
 	var results = sortResultsByRank(dict);
-	console.log(v);
-	console.log("resultados pagerank");
 	console.log(results);
+	showInDOM(results,10);
 }
 function main(){
 	//Insert dummy data from *generate.py

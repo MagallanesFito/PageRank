@@ -8,8 +8,8 @@ class Website{
 		this.children = {};
 		this.end = false;
 		//Generates url from name
-		this.url = ((key == null)? null : "http://www."+this.key.toString()+".com");
-		this.id = id++;
+		//this.url = ((key == null)? null : "http://www."+this.key.toString()+".com");
+		//this.id = id++;
 	}
 	getWord(){
 		var out = []
@@ -19,7 +19,17 @@ class Website{
 			out.unshift(node.key);
 			node = node.parent;
 		}
-		return out.join('');
+		var websiteName = out.join(''); 
+		var result = {};
+		result["name"] = websiteName;
+		result["url"] = "http://www."+websiteName+".com";
+		return result;
+	}
+	getNodeInformation(){
+		var dict_info = {};
+		dict_info["name"] = this.key;
+		dict_info["url"] = this.url;
+		return dict_info;	
 	}
 	//For testing
 	show(){
