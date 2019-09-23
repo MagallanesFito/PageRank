@@ -26,5 +26,4 @@ Execute ``` index.html ``` to start the program. ``` js/script.js ``` makes all 
 Write a prefix/word in input field and click search button.
 
 # Screenshots
-
-[!screenshot](image.png)
+![alt text](image.png)
