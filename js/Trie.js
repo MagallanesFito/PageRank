@@ -10,14 +10,14 @@ function findAllWords(node,arr){
 }
 class Trie{
 	constructor(){
-		this.root = new Website(null);
+		this.root = new TrieNode(null);
 	}
 	insert(word){
 		var node = this.root;
 
 		for(var i=0;i<word.length;i++){
 			if(!node.children[word[i]]){
-				node.children[word[i]] = new Website(word[i]);
+				node.children[word[i]] = new TrieNode(word[i]);
 				node.children[word[i]].parent = node;
 			}
 			node = node.children[word[i]];
